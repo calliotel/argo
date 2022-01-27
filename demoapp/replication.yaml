@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: alkalmazas2
-          image: <Image>
+          image: calliotel/nwm_allinone
           ports:
             - containerPort: 80
