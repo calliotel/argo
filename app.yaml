@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alkalmazas2
+spec:
+  selector:
+    matchLabels:
+      app: alkalmazas2
+  template:
+    metadata:
+      labels:
+        app: alkalmazas2
+    spec:
+      containers:
+      - name: alkalmazas2
+        image: calliotel/nwm_allinone
+        imagePullPolicy: Always
+        env:
+            - name: SSH_KEY
+              value: <hidden>
+            - name: GIT_REPO
+              value: https://github.com/calliotel/Provisioner.git
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: alkalmazas
+spec:
+  selector:
+    app: alkalmazas
+  ports:
+  - port: 80
+    targetPort: 80
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  generation: 2
+  name: alkalmazas
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: localhost
+    http:
+      paths:
+      - backend:
+          service:
+            name: alkalmazas
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+status:
+  loadBalancer:
+    ingress:
+    - hostname: localhost
