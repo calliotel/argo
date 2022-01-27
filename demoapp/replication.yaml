@@ -3,7 +3,7 @@ kind: ReplicationController
 metadata:
   name: alkalmazas2
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     app: alkalmazas2
   template:
