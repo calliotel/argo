@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: alkalmazas2
   namespace: default
- spec:
+spec:
   ingressClassName: nginx
   rules:
   - host: localhost
