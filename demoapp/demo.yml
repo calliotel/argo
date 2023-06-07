@@ -21,6 +21,8 @@ spec:
               value: <hidden>
             - name: GIT_REPO
               value: https://github.com/calliotel/Provisioner.git
+            - name: https_proxy
+              value: http://pkginst:stg5xRAf65bn@iproxy.nwm.group:3128
         resources:
           limits:
             memory: "128Mi"
